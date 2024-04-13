@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="Home"
+        android:id="@+id/home"
+        android:icon="@drawable/home"/>
+    <item
+        android:title="Workout"
+        android:id="@+id/workout"
+        android:icon="@drawable/play"/>
+    <item
+        android:title="Converter"
+        android:id="@+id/converter"
+        android:icon="@drawable/calculator"/>
+    <item
+        android:title="Settings"
+        android:id="@+id/settings"
+        android:icon="@drawable/settings"/>
+</menu>
