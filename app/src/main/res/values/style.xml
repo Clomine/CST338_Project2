@@ -11,11 +11,11 @@
         <item name="itemIconSize">32dp</item> <!-- Increase icon size -->
         <item name="itemTextAppearance">@style/BottomNavigationViewTextAppearance</item>
         <item name="itemPaddingTop">4dp</item> <!-- Decrease top padding -->
-        <item name="itemPaddingBottom">4dp</item> <!-- Decrease bottom padding -->
+        <item name="itemPaddingBottom">8dp</item> <!-- Decrease bottom padding -->
     </style>
 
     <style name="BottomNavigationViewTextAppearance" parent="TextAppearance.Design.Tab">
-        <item name="android:textSize">12sp</item> <!-- Adjust text size if necessary -->
+        <item name="android:textSize">14sp</item> <!-- Adjust text size if necessary -->
     </style>
 
 
