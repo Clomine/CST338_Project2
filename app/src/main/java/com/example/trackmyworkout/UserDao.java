@@ -21,6 +21,6 @@ public interface UserDao {
     @Query("SELECT EXISTS (SELECT * FROM UserTable where email = :email AND password = :password)")
     boolean loginEmail(String email, String password);
 
-    @Query("SELECT EXISTS (SELECT * FROM UserTable where userId = :userId AND isAdmin = 1)")
-    boolean isAdmin(int userId);
+    @Query("SELECT EXISTS (SELECT * FROM UserTable where (username = :usernameOrEmail OR email = :usernameOrEmail) AND isAdmin = 1)")
+    boolean isAdmin(String usernameOrEmail);
 }

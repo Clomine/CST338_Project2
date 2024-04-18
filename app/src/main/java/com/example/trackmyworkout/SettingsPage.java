@@ -2,8 +2,10 @@ package com.example.trackmyworkout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -19,10 +21,16 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class SettingsPage extends AppCompatActivity {
 
     private boolean isLbsGreen = true;
+    UserDao userDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        userDao = Room.databaseBuilder(this,Database.class,Database.USER_TABLE)
+                .allowMainThreadQueries()
+                .build()
+                .TMWDao();
 
         // The following part is for the Bottom Navigation Bar
         ActivitySettingsPageBinding binding = ActivitySettingsPageBinding.inflate(getLayoutInflater());
@@ -59,8 +67,16 @@ public class SettingsPage extends AppCompatActivity {
         TextView textViewAdminOption1 = findViewById(R.id.textViewAdminOption1);
         TextView textViewAdminOption2 = findViewById(R.id.textViewAdminOption2);
 
-        isLbsGreen = false; // Need check DB
-        boolean isAdmin = true;
+        boolean isAdmin;
+
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        String usernameoremail = sharedPreferences.getString("emailOrUsername",null);
+
+        TextView textView = findViewById(R.id.nameText);
+        textView.setText(usernameoremail);
+
+        isAdmin = userDao.isAdmin(usernameoremail);
+
         if (isAdmin) {
             textViewAdminOption1.setVisibility(View.VISIBLE);
             textViewAdminOption2.setVisibility(View.VISIBLE);
@@ -70,8 +86,7 @@ public class SettingsPage extends AppCompatActivity {
             // LBS or Kg
             @Override
             public void onClick(View view) {
-                // Add real change
-                updateTextColors();
+
             }
         });
         textViewOption2.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +100,12 @@ public class SettingsPage extends AppCompatActivity {
             // Logout
             @Override
             public void onClick(View view) {
-
+                SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("isLoggedIn", false);
+                editor.apply();
+                Intent intent = new Intent(SettingsPage.this, MainActivity.class);
+                startActivity(intent);
             }
         });
         textViewOption4.setOnClickListener(new View.OnClickListener() {
@@ -104,19 +124,4 @@ public class SettingsPage extends AppCompatActivity {
         });
     }
 
-    private void updateTextColors() {
-        TextView textViewOption1 = findViewById(R.id.textViewOption1);
-        String text = "LBS or Kg";
-        SpannableString spannable = new SpannableString(text);
-        if (isLbsGreen) {
-            // "LBS" is green
-            spannable.setSpan(new ForegroundColorSpan(Color.GREEN), 0, 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            spannable.setSpan(new ForegroundColorSpan(Color.BLACK), 3, text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        } else {
-            // "Kg" is green
-            spannable.setSpan(new ForegroundColorSpan(Color.BLACK), 0, 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            spannable.setSpan(new ForegroundColorSpan(Color.GREEN), 7, text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        }
-        textViewOption1.setText(spannable);
-    }
 }

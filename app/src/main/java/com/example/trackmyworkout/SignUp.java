@@ -100,6 +100,7 @@ public class SignUp extends AppCompatActivity {
                     SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs",MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putBoolean("isLoggedIn",true);
+                    editor.putString("emailOrUsername",username.getText().toString());
                     editor.apply();
                     Intent intent = new Intent(SignUp.this, LandingPage.class);
                     startActivity(intent);
