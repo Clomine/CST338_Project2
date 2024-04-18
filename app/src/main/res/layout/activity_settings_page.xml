@@ -7,14 +7,104 @@
     tools:context=".SettingsPage">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewMainTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="Settings Page"
+        android:layout_marginTop="24dp"
+        android:text="@string/settings"
+        android:textSize="28sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="16dp"
+        android:background="@drawable/rounded_recycler_land_background"
+        app:layout_constraintTop_toTopOf="@id/textViewMainTitle"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <LinearLayout
+            android:id="@+id/text_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="32dp"
+            android:background="@drawable/rounded_recycler_land_background">
+
+            <TextView
+                android:id="@+id/textViewOption1"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:textSize="16sp"
+                android:text="LBS or Kg"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="onOptionClick" />
+
+            <TextView
+                android:id="@+id/textViewOption2"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:textSize="16sp"
+                android:text="Reset Workout"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="onOptionClick" />
+
+            <TextView
+                android:id="@+id/textViewOption3"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:textSize="16sp"
+                android:text="Logout"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="onOptionClick" />
+
+            <TextView
+                android:id="@+id/textViewOption4"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:textSize="16sp"
+                android:text="Delete account"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="onOptionClick" />
+
+            <TextView
+                android:id="@+id/textViewAdminOption1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/red"
+                android:layout_marginTop="24dp"
+                android:text="You are an Admin:"
+                android:visibility="gone"
+                android:clickable="false"
+                android:focusable="false"
+                android:onClick="onOptionClick" />
+
+            <TextView
+                android:id="@+id/textViewAdminOption2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/red"
+                android:text="      Manage users"
+                android:visibility="gone"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="onOptionClick" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
