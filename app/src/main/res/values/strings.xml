@@ -50,4 +50,7 @@
     <string name="add_a_new_exercise">Add a new exercise.</string>
     <string name="enter_exercise_name">Enter exercise name</string>
     <string name="enter_weight">Enter weight</string>
+    <string name="exercises">Exercises</string>
+    <string name="weight">Weight</string>
+    <string name="trackmyworkout">TrackMyWorkout</string>
 </resources>
