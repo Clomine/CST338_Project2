@@ -2,4 +2,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="c1_electric_violet">#FF823DFF</color>
+    <color name="c2_electric_purple">#FF9F4FFF</color>
+    <color name="c3_amethyst">#FFB25AFF</color>
+    <color name="c4_linen">#FFF1E7DF</color>
+    <color name="c5_battleship_gray">#FF89817B</color>
+    <color name="c6_mikado_yellow">#FFF8C21B</color>
+
+    <color name="bottom_nav_item_color">#FF823DFF</color> <!-- c1 -->
+    <color name="bottom_nav_background_color">#FF00FF00</color>
 </resources>
