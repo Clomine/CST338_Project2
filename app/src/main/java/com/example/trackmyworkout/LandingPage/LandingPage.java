@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
-
 import com.example.trackmyworkout.ConversionPage;
 import com.example.trackmyworkout.R;
 import com.example.trackmyworkout.SettingsPage;
@@ -25,10 +24,7 @@ import java.util.ArrayList;
 
 public class LandingPage extends AppCompatActivity {
 
-    // Argument for exercise
-    private RecyclerView recyclerView;
     private ExerciseAdapter adapter;
-    private ArrayList<Exercise> exercises;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,10 +59,11 @@ public class LandingPage extends AppCompatActivity {
         // The above part is for the Bottom Navigation Bar
 
         // The following part is for the Exercise RecyclerView
-        recyclerView = findViewById(R.id.recyclerViewWorkouts);
+        // Argument for exercise
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewWorkouts);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        exercises = new ArrayList<>();
+        ArrayList<Exercise> exercises = new ArrayList<>();
         adapter = new ExerciseAdapter(exercises);
 
         adapter = new ExerciseAdapter(exercises);
@@ -78,43 +75,14 @@ public class LandingPage extends AppCompatActivity {
 
         recyclerView.setAdapter(adapter);
 
-            // Dialog part for adding element when clicking on the add button
+        // Dialog part for adding element when clicking on the add button
         FloatingActionButton fabAddWorkout = findViewById(R.id.fabAddWorkout);
         fabAddWorkout.setOnClickListener(view -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            View dialogView = getLayoutInflater().inflate(R.layout.dialog_add_exercise, null);
-            builder.setView(dialogView);
-
-            EditText workoutNameInput = dialogView.findViewById(R.id.editTextWorkoutName);
-            EditText workoutWeightInput = dialogView.findViewById(R.id.editTextWorkoutWeight);
-
-            builder.setPositiveButton("Add", null);
-            builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
-
-            AlertDialog dialog = builder.create();
-            dialog.show();
-
-            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
-                String name = workoutNameInput.getText().toString().trim();
-                String weightStr = workoutWeightInput.getText().toString().trim();
-                if (name.isEmpty()) {
-                    workoutNameInput.setError("Workout name is required!");
-                    return;
-                }
-                double weight = 0;
-                try {
-                    weight = Double.parseDouble(weightStr);
-                } catch (NumberFormatException e) {
-                    workoutWeightInput.setError("Valid weight is required!");
-                    return;
-                }
-                adapter.addExercise(new Exercise(name, weight));
-                dialog.dismiss();
-            });
+            showAddDialog();
         });
     }
 
-    // Editing Recycler view
+    // Editing Recycler view using long click on exercise's
     private void showEditDeleteDialog(final int position) {
         Exercise exercise = adapter.getExercises().get(position);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -131,18 +99,73 @@ public class LandingPage extends AppCompatActivity {
         weightInput.setText(String.valueOf(exercise.getWeight()));
 
         // Set up the buttons
-        builder.setPositiveButton("Save", (dialog, which) -> {
-            exercise.setName(nameInput.getText().toString());
-            exercise.setWeight(Double.parseDouble(weightInput.getText().toString()));
-            adapter.notifyDataSetChanged();
-        });
-
+        builder.setPositiveButton("Save", null);
         builder.setNegativeButton("Cancel", null);
 
         builder.setNeutralButton("Delete", (dialog, which) -> {
             adapter.removeExercise(position);
             adapter.notifyDataSetChanged();
         });
-        builder.show();
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        // Overriding the OnClickListener to prevent dialog from closing on positive button if validation fails
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(view -> {
+            String newName = nameInput.getText().toString();
+            String newWeightStr = weightInput.getText().toString();
+
+            if (newName.isEmpty()) {
+                nameInput.setError("Workout name is required!");
+                return;
+            }
+            double newWeight;
+            try {
+                newWeight = Double.parseDouble(newWeightStr);
+            } catch (NumberFormatException e) {
+                weightInput.setError("Valid weight is required!");
+                return;
+            }
+
+            // If inputs are valid, update the exercise and dismiss the dialog
+            exercise.setName(newName);
+            exercise.setWeight(newWeight);
+            adapter.notifyItemChanged(position);
+            dialog.dismiss();
+        });
+    }
+
+    // Adding to the Recycler view using the Floating button
+    private void showAddDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_add_exercise, null);
+        builder.setView(dialogView);
+
+        EditText workoutNameInput = dialogView.findViewById(R.id.editTextWorkoutName);
+        EditText workoutWeightInput = dialogView.findViewById(R.id.editTextWorkoutWeight);
+
+        builder.setPositiveButton("Add", null);
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+            String name = workoutNameInput.getText().toString().trim();
+            String weightStr = workoutWeightInput.getText().toString().trim();
+            if (name.isEmpty()) {
+                workoutNameInput.setError("Workout name is required!");
+                return;
+            }
+            double weight = 0;
+            try {
+                weight = Double.parseDouble(weightStr);
+            } catch (NumberFormatException e) {
+                workoutWeightInput.setError("Valid weight is required!");
+                return;
+            }
+            adapter.addExercise(new Exercise(name, weight));
+            dialog.dismiss();
+        });
     }
 }
