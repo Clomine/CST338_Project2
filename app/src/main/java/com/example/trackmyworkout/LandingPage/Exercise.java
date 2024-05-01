@@ -4,9 +4,12 @@ public class Exercise {
     private String name;
     private double weight;
 
-    public Exercise(String name, double weight) {
+    private int exId;
+
+    public Exercise(String name, double weight, int exId) {
         this.name = name;
         this.weight = Math.round(weight * 100.0) / 100.0;
+        this.exId = exId;
     }
 
     public String getName() {

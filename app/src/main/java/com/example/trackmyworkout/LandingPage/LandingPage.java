@@ -5,14 +5,22 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
 import com.example.trackmyworkout.ConversionPage;
+import com.example.trackmyworkout.DB.Database;
+import com.example.trackmyworkout.DB.ExerciseDao;
+import com.example.trackmyworkout.DB.ExerciseTable;
+import com.example.trackmyworkout.DB.UserByExerciseDAO;
+import com.example.trackmyworkout.DB.WeightDAO;
+import com.example.trackmyworkout.DB.WeightTable;
 import com.example.trackmyworkout.R;
 import com.example.trackmyworkout.SettingsPage;
 import com.example.trackmyworkout.WorkoutPage;
@@ -21,14 +29,31 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class LandingPage extends AppCompatActivity {
 
     private ExerciseAdapter adapter;
 
+    UserByExerciseDAO userByExerciseDAO;
+    ExerciseDao exerciseDao;
+    WeightDAO weightDAO;
+
+    SharedPreferences sharedPreferences;
+    int userId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        userId = sharedPreferences.getInt("userId", -1);
+
+        userByExerciseDAO = Room.databaseBuilder(this, Database.class, Database.USERBYEXERCISE_TABLE).allowMainThreadQueries().build().UBEDao();
+        exerciseDao = Room.databaseBuilder(this, Database.class, Database.EXERCISE_TABLE).allowMainThreadQueries().build().EXDao();
+        weightDAO = Room.databaseBuilder(this, Database.class, Database.WEIGHT_TABLE).allowMainThreadQueries().build().WDao();
+
 
         // The following part is for the Bottom Navigation Bar
         ActivityLandingPageBinding binding = ActivityLandingPageBinding.inflate(getLayoutInflater());
@@ -59,13 +84,15 @@ public class LandingPage extends AppCompatActivity {
         // The above part is for the Bottom Navigation Bar
 
         // The following part is for the Exercise RecyclerView
-        // Argument for exercise
         RecyclerView recyclerView = findViewById(R.id.recyclerViewWorkouts);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        // Exercises list initialisation using DB
         ArrayList<Exercise> exercises = new ArrayList<>();
-        adapter = new ExerciseAdapter(exercises);
-
+        List<Integer> iDlist = userByExerciseDAO.getExerciseIdByUser(userId);
+        for (Integer id : iDlist) {
+            exercises.add(new Exercise(exerciseDao.nameById(id), weightDAO.getLastWeightByExerciseId(id), id));
+        }
         adapter = new ExerciseAdapter(exercises);
         adapter.setOnItemLongClickListener(position -> {
             showEditDeleteDialog(position);
@@ -164,7 +191,14 @@ public class LandingPage extends AppCompatActivity {
                 workoutWeightInput.setError("Valid weight is required!");
                 return;
             }
-            adapter.addExercise(new Exercise(name, weight));
+
+            // Adding new Exercise to DB
+            int exerciseId = exerciseDao.syncExerciseWithUser(userId, name);
+            WeightTable weightTable = new WeightTable(0, exerciseId, weight, new Date());
+            weightDAO.weightInsert(weightTable);
+
+            // Adding new Exercise to Adapter
+            adapter.addExercise(new Exercise(name, weight, exerciseId));
             dialog.dismiss();
         });
     }

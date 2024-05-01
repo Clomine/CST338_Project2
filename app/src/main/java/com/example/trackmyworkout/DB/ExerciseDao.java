@@ -18,10 +18,11 @@ public interface ExerciseDao {
 
 
     @Insert
-    default void syncExerciseWithUser(int userID, String exerciseName) {
+    default int syncExerciseWithUser(int userID, String exerciseName) {
         int exerciseId = Math.toIntExact(exerciseInsert(new ExerciseTable(0, exerciseName)));
         UserByExerciseTable userByExercise = new UserByExerciseTable(userID, exerciseId);
         insertUserExercise(userByExercise);
+        return exerciseId;
     }
 
     @Insert
