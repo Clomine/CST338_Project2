@@ -1,7 +1,9 @@
-package com.example.trackmyworkout;
+package com.example.trackmyworkout.DB;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+import com.example.trackmyworkout.DB.Database;
 
 @Entity(tableName = Database.USER_TABLE)
 public class UserTable {
