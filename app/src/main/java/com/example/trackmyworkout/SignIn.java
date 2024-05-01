@@ -12,14 +12,14 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.example.trackmyworkout.LandingPage.LandingPage;
 import com.example.trackmyworkout.DB.Database;
 import com.example.trackmyworkout.DB.UserDao;
+import com.example.trackmyworkout.LandingPage.LandingPage;
 import com.example.trackmyworkout.databinding.ActivitySignInBinding;
-import com.example.trackmyworkout.databinding.ActivitySignUpBinding;
 
 public class SignIn extends AppCompatActivity {
 
+    Integer userId;
     EditText emailorusername;
     EditText password;
     ActivitySignInBinding binding;
@@ -32,7 +32,8 @@ public class SignIn extends AppCompatActivity {
         String Password = password.getText().toString();
 
         if (EmailorUsername.contains("@")) {
-            if(userDao.loginEmail(EmailorUsername,Password)) {
+            userId = userDao.loginEmail(EmailorUsername,Password);
+            if(userId != null) {
                 isAllowed = true;
             }
             else {
@@ -41,7 +42,8 @@ public class SignIn extends AppCompatActivity {
             }
         }
         else {
-            if(userDao.loginUsername(EmailorUsername,Password)) {
+            userId = userDao.loginUsername(EmailorUsername,Password);
+            if(userId != null) {
                 isAllowed = true;
             }
             else {
@@ -64,7 +66,7 @@ public class SignIn extends AppCompatActivity {
         password = binding.passwordField;
 
 
-        userDao = Room.databaseBuilder(this,Database.class,Database.USER_TABLE)
+        userDao = Room.databaseBuilder(this, Database.class,Database.USER_TABLE)
                 .allowMainThreadQueries()
                 .build()
                 .TMWDao();
@@ -89,6 +91,7 @@ public class SignIn extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putBoolean("isLoggedIn",true);
                     editor.putString("emailOrUsername",emailorusername.getText().toString());
+                    editor.putInt("userId", userId);
                     editor.apply();
                     Intent intent = new Intent(SignIn.this, LandingPage.class);
                     startActivity(intent);
