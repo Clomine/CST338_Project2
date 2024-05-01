@@ -6,15 +6,13 @@ import androidx.room.Room;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.trackmyworkout.DB.Database;
+import com.example.trackmyworkout.DB.UserDao;
 import com.example.trackmyworkout.databinding.ActivitySettingsPageBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -27,7 +25,7 @@ public class SettingsPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        userDao = Room.databaseBuilder(this,Database.class,Database.USER_TABLE)
+        userDao = Room.databaseBuilder(this,Database.class, Database.USER_TABLE)
                 .allowMainThreadQueries()
                 .build()
                 .TMWDao();

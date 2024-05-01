@@ -6,7 +6,6 @@ import androidx.room.Room;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -14,11 +13,15 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.example.trackmyworkout.databinding.ActivityMainBinding;
+import com.example.trackmyworkout.DB.Database;
+import com.example.trackmyworkout.DB.UserDao;
+import com.example.trackmyworkout.DB.UserTable;
 import com.example.trackmyworkout.databinding.ActivitySignUpBinding;
 
 public class SignUp extends AppCompatActivity {
 
+
+    Integer userId;
     EditText username;
     EditText email;
     EditText password;
@@ -57,7 +60,7 @@ public class SignUp extends AppCompatActivity {
 
         else {
             UserTable user = new UserTable(0,Username,Email,Password, false);
-            userDao.insertUser(user);
+            userId = Math.toIntExact(userDao.insertUser(user));
             isAllowed = true;
         }
 
@@ -77,7 +80,7 @@ public class SignUp extends AppCompatActivity {
         password = binding.passwordField;
         confirmPassword = binding.confirmPasswordField;
 
-        userDao = Room.databaseBuilder(this,Database.class,Database.USER_TABLE)
+        userDao = Room.databaseBuilder(this, Database.class,Database.USER_TABLE)
                 .allowMainThreadQueries()
                 .build()
                 .TMWDao();
@@ -101,6 +104,7 @@ public class SignUp extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putBoolean("isLoggedIn",true);
                     editor.putString("emailOrUsername",username.getText().toString());
+                    editor.putInt("userId", userId);
                     editor.apply();
                     Intent intent = new Intent(SignUp.this, LandingPage.class);
                     startActivity(intent);

@@ -1,14 +1,22 @@
-package com.example.trackmyworkout;
+package com.example.trackmyworkout.DB;
 
 import android.content.Context;
 
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 
-@androidx.room.Database(entities = {UserTable.class}, version = 1)
+import com.example.trackmyworkout.Converters;
+
+@androidx.room.Database(entities = {UserTable.class, ExerciseTable.class, UserByExerciseTable.class, WeightTable.class}, version = 1)
+@TypeConverters({Converters.class})
 public abstract class Database extends RoomDatabase {
 
     public static final String USER_TABLE = "UserTable";
+    public static final String EXERCISE_TABLE = "ExerciseTable";
+
+    public static final String USERBYEXERCISE_TABLE = "UserByExerciseTable";
+    public static final String WEIGHT_TABLE = "WeightTable";
     private static final String DATABASE_NAME = "TMW.DB";
 
     private static volatile Database instance;
