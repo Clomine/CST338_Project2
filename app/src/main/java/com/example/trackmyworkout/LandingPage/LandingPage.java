@@ -1,4 +1,4 @@
-package com.example.trackmyworkout;
+package com.example.trackmyworkout.LandingPage;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -11,9 +11,12 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 
+import com.example.trackmyworkout.ConversionPage;
+import com.example.trackmyworkout.R;
+import com.example.trackmyworkout.SettingsPage;
+import com.example.trackmyworkout.WorkoutPage;
 import com.example.trackmyworkout.databinding.ActivityLandingPageBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -65,9 +68,17 @@ public class LandingPage extends AppCompatActivity {
 
         exercises = new ArrayList<>();
         adapter = new ExerciseAdapter(exercises);
+
+        adapter = new ExerciseAdapter(exercises);
+        adapter.setOnItemLongClickListener(position -> {
+            showEditDeleteDialog(position);
+            return true;
+        });
+        // The above part is for the Exercise RecyclerView
+
         recyclerView.setAdapter(adapter);
 
-            // Dialog part
+            // Dialog part for adding element when clicking on the add button
         FloatingActionButton fabAddWorkout = findViewById(R.id.fabAddWorkout);
         fabAddWorkout.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -97,15 +108,41 @@ public class LandingPage extends AppCompatActivity {
                     workoutWeightInput.setError("Valid weight is required!");
                     return;
                 }
-                addWorkout(new Exercise(name, weight));
+                adapter.addExercise(new Exercise(name, weight));
                 dialog.dismiss();
             });
         });
     }
 
-    private void addWorkout(Exercise workout) {
-        exercises.add(workout);
-        adapter.notifyItemInserted(exercises.size() - 1);
+    // Editing Recycler view
+    private void showEditDeleteDialog(final int position) {
+        Exercise exercise = adapter.getExercises().get(position);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Edit Exercise");
+
+        // Custom layout for dialog
+        final View customLayout = getLayoutInflater().inflate(R.layout.edit_exercise_dialog, null);
+        builder.setView(customLayout);
+
+        // Set up the input fields
+        final EditText nameInput = customLayout.findViewById(R.id.editTextExerciseName);
+        final EditText weightInput = customLayout.findViewById(R.id.editTextExerciseWeight);
+        nameInput.setText(exercise.getName());
+        weightInput.setText(String.valueOf(exercise.getWeight()));
+
+        // Set up the buttons
+        builder.setPositiveButton("Save", (dialog, which) -> {
+            exercise.setName(nameInput.getText().toString());
+            exercise.setWeight(Double.parseDouble(weightInput.getText().toString()));
+            adapter.notifyDataSetChanged();
+        });
+
+        builder.setNegativeButton("Cancel", null);
+
+        builder.setNeutralButton("Delete", (dialog, which) -> {
+            adapter.removeExercise(position);
+            adapter.notifyDataSetChanged();
+        });
+        builder.show();
     }
-    // The above part is for the Exercise RecyclerView
 }

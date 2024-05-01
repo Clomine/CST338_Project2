@@ -12,8 +12,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.trackmyworkout.LandingPage.LandingPage;
 import com.example.trackmyworkout.databinding.ActivitySignInBinding;
-import com.example.trackmyworkout.databinding.ActivitySignUpBinding;
 
 public class SignIn extends AppCompatActivity {
 

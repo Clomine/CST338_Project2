@@ -1,8 +1,8 @@
-package com.example.trackmyworkout;
+package com.example.trackmyworkout.LandingPage;
 
 public class Exercise {
-    private final String name;
-    private final double weight;
+    private String name;
+    private double weight;
 
     public Exercise(String name, double weight) {
         this.name = name;
@@ -15,5 +15,13 @@ public class Exercise {
 
     public double getWeight() {
         return weight;
+    }
+
+    public void setName(String nam) {
+        name = nam;
+    }
+
+    public void setWeight(double weigh) {
+        weight = weigh;
     }
 }

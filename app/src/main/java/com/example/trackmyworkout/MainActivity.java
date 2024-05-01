@@ -8,6 +8,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.trackmyworkout.LandingPage.LandingPage;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override

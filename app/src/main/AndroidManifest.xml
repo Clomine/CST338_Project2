@@ -22,7 +22,7 @@
             android:name=".WorkoutPage"
             android:exported="false" />
         <activity
-            android:name=".LandingPage"
+            android:name=".LandingPage.LandingPage"
             android:exported="false" />
         <activity
             android:name=".SignUp"

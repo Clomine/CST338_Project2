@@ -1,4 +1,4 @@
-package com.example.trackmyworkout;
+package com.example.trackmyworkout.LandingPage;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,13 +6,29 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.trackmyworkout.R;
+
 import java.util.List;
 
 public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.WorkoutViewHolder> {
-    private List<Exercise> workouts;
+    private List<Exercise> exercises;
+    private OnItemLongClickListener longClickListener;
+
+    public List<Exercise> getExercises() {
+        return exercises;
+    }
+
+    public interface OnItemLongClickListener {
+        boolean onItemLongClick(int position);
+    }
+
+    public void setOnItemLongClickListener(OnItemLongClickListener listener) {
+        this.longClickListener = listener;
+    }
 
     public ExerciseAdapter(List<Exercise> workouts) {
-        this.workouts = workouts;
+        this.exercises = workouts;
     }
 
     @NonNull
@@ -24,14 +40,20 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Workou
 
     @Override
     public void onBindViewHolder(@NonNull WorkoutViewHolder holder, int position) {
-        Exercise workout = workouts.get(position);
+        Exercise workout = exercises.get(position);
         holder.workoutName.setText(workout.getName());
         holder.workoutWeight.setText(String.valueOf(workout.getWeight()));
+
+        // Set long click listener for context menu
+        holder.itemView.setOnLongClickListener(v -> {
+            if (longClickListener != null) return longClickListener.onItemLongClick(position);
+            return false;
+        });
     }
 
     @Override
     public int getItemCount() {
-        return workouts.size();
+        return exercises.size();
     }
 
     public static class WorkoutViewHolder extends RecyclerView.ViewHolder {
@@ -44,5 +66,16 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Workou
             workoutWeight = itemView.findViewById(R.id.textViewExerciseWeight);
         }
     }
-}
 
+    public void addExercise(Exercise exercise) {
+        this.exercises.add(exercise);
+        notifyDataSetChanged();
+    }
+
+    public void removeExercise(int position) {
+        if (position >= 0 && position < exercises.size()) {
+            this.exercises.remove(position);
+            notifyDataSetChanged();
+        }
+    }
+}
