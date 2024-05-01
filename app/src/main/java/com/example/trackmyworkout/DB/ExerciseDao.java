@@ -8,7 +8,7 @@ import androidx.room.Query;
 public interface ExerciseDao {
 
     @Insert
-    int exerciseInsert(ExerciseTable exerciseTable);
+    Long exerciseInsert(ExerciseTable exerciseTable);
 
     @Query("SELECT name FROM ExerciseTable WHERE exerciseID = :exerciseID")
     String nameById(int exerciseID);
@@ -19,7 +19,7 @@ public interface ExerciseDao {
 
     @Insert
     default void syncExerciseWithUser(int userID, String exerciseName) {
-        int exerciseId = exerciseInsert(new ExerciseTable(0,exerciseName));
+        int exerciseId = Math.toIntExact(exerciseInsert(new ExerciseTable(0, exerciseName)));
         UserByExerciseTable userByExercise = new UserByExerciseTable(userID, exerciseId);
         insertUserExercise(userByExercise);
     }

@@ -22,6 +22,9 @@ public abstract class Database extends RoomDatabase {
     private static volatile Database instance;
     private static final Object LOCK = new Object();
     public abstract UserDao TMWDao();
+    public abstract ExerciseDao EXDao();
+    public abstract UserByExerciseDAO UBEDao();
+    public abstract WeightDAO WDao();
 
     public static Database getInstance(Context context) {
         if (instance == null) {
