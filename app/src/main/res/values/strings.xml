@@ -56,4 +56,7 @@
     <string name="exercises">Exercises</string>
     <string name="weight">Weight</string>
     <string name="trackmyworkout">TrackMyWorkout</string>
+    <string name="enter_weight_in_kg">Enter weight in kg</string>
+    <string name="enter_weight_in_lbs">Enter weight in lbs</string>
+    <string name="convert">Convert</string>
 </resources>
