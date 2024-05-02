@@ -4,21 +4,7 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 
 @Entity(tableName = Database.USERBYEXERCISE_TABLE,
-        primaryKeys = {"userId", "exerciseId"},
-        foreignKeys = {
-                @ForeignKey(
-                        entity = UserTable.class,
-                        parentColumns = "userId",
-                        childColumns = "userId",
-                        onDelete = ForeignKey.CASCADE
-                ),
-                @ForeignKey(
-                        entity = ExerciseTable.class,
-                        parentColumns = "exerciseId",
-                        childColumns = "exerciseId",
-                        onDelete = ForeignKey.CASCADE
-                )
-        })
+        primaryKeys = {"userId", "exerciseId"})
 public class UserByExerciseTable {
 
     private int userId;

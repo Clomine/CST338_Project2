@@ -6,11 +6,7 @@ import androidx.room.Room;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -23,17 +19,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SettingsPage extends AppCompatActivity {
 
-    private boolean isLbsGreen = true;
     UserDao userDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        userDao = Room.databaseBuilder(this,Database.class,Database.USER_TABLE)
-                .allowMainThreadQueries()
-                .build()
-                .TMWDao();
+        userDao = Room.databaseBuilder(this,Database.class,"DB").allowMainThreadQueries().build().TMWDao();
 
         // The following part is for the Bottom Navigation Bar
         ActivitySettingsPageBinding binding = ActivitySettingsPageBinding.inflate(getLayoutInflater());

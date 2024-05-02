@@ -81,7 +81,7 @@ public class SignUp extends AppCompatActivity {
         password = binding.passwordField;
         confirmPassword = binding.confirmPasswordField;
 
-        userDao = Room.databaseBuilder(this, Database.class,Database.USER_TABLE)
+        userDao = Room.databaseBuilder(this, Database.class,"DB")
                 .allowMainThreadQueries()
                 .build()
                 .TMWDao();
