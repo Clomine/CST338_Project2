@@ -8,7 +8,7 @@ import androidx.room.TypeConverters;
 
 import com.example.trackmyworkout.Converters;
 
-@androidx.room.Database(entities = {UserTable.class, ExerciseTable.class, UserByExerciseTable.class, WeightTable.class}, version = 2)
+@androidx.room.Database(entities = {UserTable.class, ExerciseTable.class, UserByExerciseTable.class, WeightTable.class}, version = 4)
 @TypeConverters({Converters.class})
 public abstract class Database extends RoomDatabase {
 

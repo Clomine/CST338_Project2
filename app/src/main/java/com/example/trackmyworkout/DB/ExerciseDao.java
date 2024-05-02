@@ -16,15 +16,16 @@ public interface ExerciseDao {
     @Query("DELETE FROM ExerciseTable WHERE exerciseID = :exerciseID")
     int deleteExercise(int exerciseID);
 
+    @Query("UPDATE ExerciseTable SET name = :name WHERE exerciseId = :exerciseId")
+    void updateExerciseName(int exerciseId, String name);
+
 
     @Insert
-    default int syncExerciseWithUser(int userID, String exerciseName) {
+    default int syncExerciseWithUser(int userID, String exerciseName, UserByExerciseDAO userByExerciseDAO) {
         int exerciseId = Math.toIntExact(exerciseInsert(new ExerciseTable(0, exerciseName)));
         UserByExerciseTable userByExercise = new UserByExerciseTable(userID, exerciseId);
-        insertUserExercise(userByExercise);
+        userByExerciseDAO.userByExerciseInsert(userByExercise);
         return exerciseId;
     }
 
-    @Insert
-    void insertUserExercise(UserByExerciseTable userByExercise);
 }

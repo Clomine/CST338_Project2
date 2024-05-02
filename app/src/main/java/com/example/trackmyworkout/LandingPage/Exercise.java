@@ -27,4 +27,8 @@ public class Exercise {
     public void setWeight(double weigh) {
         weight = weigh;
     }
+
+    public int getExId() {
+        return exId;
+    }
 }

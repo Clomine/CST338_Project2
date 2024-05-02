@@ -66,7 +66,7 @@ public class SignIn extends AppCompatActivity {
         password = binding.passwordField;
 
 
-        userDao = Room.databaseBuilder(this, Database.class,Database.USER_TABLE)
+        userDao = Room.databaseBuilder(this, Database.class,"DB")
                 .allowMainThreadQueries()
                 .build()
                 .TMWDao();

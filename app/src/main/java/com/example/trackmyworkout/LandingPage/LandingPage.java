@@ -50,9 +50,15 @@ public class LandingPage extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         userId = sharedPreferences.getInt("userId", -1);
 
-        userByExerciseDAO = Room.databaseBuilder(this, Database.class, Database.USERBYEXERCISE_TABLE).allowMainThreadQueries().build().UBEDao();
-        exerciseDao = Room.databaseBuilder(this, Database.class, Database.EXERCISE_TABLE).allowMainThreadQueries().build().EXDao();
-        weightDAO = Room.databaseBuilder(this, Database.class, Database.WEIGHT_TABLE).allowMainThreadQueries().build().WDao();
+        Database db = Room.databaseBuilder(this, Database.class, "DB")
+                .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
+                .build();
+
+        exerciseDao = db.EXDao();
+        userByExerciseDAO = db.UBEDao();
+        weightDAO = db.WDao();
+
 
 
         // The following part is for the Bottom Navigation Bar
@@ -90,9 +96,11 @@ public class LandingPage extends AppCompatActivity {
         // Exercises list initialisation using DB
         ArrayList<Exercise> exercises = new ArrayList<>();
         List<Integer> iDlist = userByExerciseDAO.getExerciseIdByUser(userId);
+
         for (Integer id : iDlist) {
             exercises.add(new Exercise(exerciseDao.nameById(id), weightDAO.getLastWeightByExerciseId(id), id));
         }
+
         adapter = new ExerciseAdapter(exercises);
         adapter.setOnItemLongClickListener(position -> {
             showEditDeleteDialog(position);
@@ -130,6 +138,10 @@ public class LandingPage extends AppCompatActivity {
         builder.setNegativeButton("Cancel", null);
 
         builder.setNeutralButton("Delete", (dialog, which) -> {
+            // Delete exercise in DB
+            exerciseDao.deleteExercise(adapter.getExercises().get(position).getExId());
+            userByExerciseDAO.deleteUserByExercise(adapter.getExercises().get(position).getExId());
+
             adapter.removeExercise(position);
             adapter.notifyDataSetChanged();
         });
@@ -154,9 +166,15 @@ public class LandingPage extends AppCompatActivity {
                 return;
             }
 
-            // If inputs are valid, update the exercise and dismiss the dialog
+            // Change name & weight in Adapter
             exercise.setName(newName);
             exercise.setWeight(newWeight);
+
+            // Modify name and weight in DB
+            exerciseDao.updateExerciseName(adapter.getExercises().get(position).getExId(), newName);
+            WeightTable weight = new WeightTable(0, adapter.getExercises().get(position).getExId(), newWeight, new Date());
+            weightDAO.weightInsert(weight);
+
             adapter.notifyItemChanged(position);
             dialog.dismiss();
         });
@@ -193,7 +211,7 @@ public class LandingPage extends AppCompatActivity {
             }
 
             // Adding new Exercise to DB
-            int exerciseId = exerciseDao.syncExerciseWithUser(userId, name);
+            int exerciseId = exerciseDao.syncExerciseWithUser(userId, name,userByExerciseDAO);
             WeightTable weightTable = new WeightTable(0, exerciseId, weight, new Date());
             weightDAO.weightInsert(weightTable);
 

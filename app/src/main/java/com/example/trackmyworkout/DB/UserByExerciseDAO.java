@@ -15,4 +15,7 @@ public interface UserByExerciseDAO {
     @Query("SELECT exerciseId FROM userbyexercisetable WHERE userId = :userId")
     List<Integer> getExerciseIdByUser(int userId);
 
+    @Query("DELETE FROM UserByExerciseTable WHERE exerciseId = :exerciseId")
+    void deleteUserByExercise(int exerciseId);
+
 }

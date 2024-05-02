@@ -25,7 +25,7 @@ public class SettingsPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        userDao = Room.databaseBuilder(this,Database.class,Database.USER_TABLE).allowMainThreadQueries().build().TMWDao();
+        userDao = Room.databaseBuilder(this,Database.class,"DB").allowMainThreadQueries().build().TMWDao();
 
         // The following part is for the Bottom Navigation Bar
         ActivitySettingsPageBinding binding = ActivitySettingsPageBinding.inflate(getLayoutInflater());
