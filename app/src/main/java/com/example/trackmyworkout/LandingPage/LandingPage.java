@@ -13,12 +13,14 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.trackmyworkout.ConversionPage;
 import com.example.trackmyworkout.DB.Database;
 import com.example.trackmyworkout.DB.ExerciseDao;
 import com.example.trackmyworkout.DB.ExerciseTable;
 import com.example.trackmyworkout.DB.UserByExerciseDAO;
+import com.example.trackmyworkout.DB.UserDao;
 import com.example.trackmyworkout.DB.WeightDAO;
 import com.example.trackmyworkout.DB.WeightTable;
 import com.example.trackmyworkout.R;
@@ -36,6 +38,7 @@ public class LandingPage extends AppCompatActivity {
 
     private ExerciseAdapter adapter;
 
+    UserDao userDao;
     UserByExerciseDAO userByExerciseDAO;
     ExerciseDao exerciseDao;
     WeightDAO weightDAO;
@@ -55,6 +58,7 @@ public class LandingPage extends AppCompatActivity {
                 .allowMainThreadQueries()
                 .build();
 
+        userDao = db.TMWDao();
         exerciseDao = db.EXDao();
         userByExerciseDAO = db.UBEDao();
         weightDAO = db.WDao();
@@ -88,6 +92,16 @@ public class LandingPage extends AppCompatActivity {
             }
         });
         // The above part is for the Bottom Navigation Bar
+
+        // Subtitle part
+        TextView textViewSubTitle = findViewById(R.id.textViewSubTitle);
+        String newSubtitle;
+        if (!userDao.isAdmin(userId)) {
+            newSubtitle = "Welcome " + userDao.getName(userId) + " !";
+        } else {
+            newSubtitle = "Welcome " + userDao.getName(userId) + ", you are an Admin !";
+        }
+        textViewSubTitle.setText(newSubtitle);
 
         // The following part is for the Exercise RecyclerView
         RecyclerView recyclerView = findViewById(R.id.recyclerViewWorkouts);

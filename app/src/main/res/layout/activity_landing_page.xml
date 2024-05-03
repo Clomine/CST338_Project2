@@ -36,7 +36,7 @@
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewMainTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewSubTitle" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddWorkout"
@@ -62,6 +62,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textViewSubTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome_machin"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/textViewMainTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <TextView
         android:id="@+id/textViewExerciseHeader"
         android:layout_width="0dp"
         android:layout_height="58dp"
@@ -73,7 +84,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@id/textViewWeightHeader"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewMainTitle" />
+        app:layout_constraintTop_toBottomOf="@id/textViewSubTitle" />
 
     <TextView
         android:id="@+id/textViewWeightHeader"
@@ -87,7 +98,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/textViewExerciseHeader"
-        app:layout_constraintTop_toBottomOf="@id/textViewMainTitle" />
+        app:layout_constraintTop_toBottomOf="@id/textViewSubTitle" />
 
     <FrameLayout
         android:id="@+id/content_frame"
