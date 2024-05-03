@@ -65,13 +65,8 @@ public class SettingsPage extends AppCompatActivity {
         boolean isAdmin;
 
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        String usernameoremail = sharedPreferences.getString("emailOrUsername",null);
-
-        TextView textView = findViewById(R.id.nameText);
-        textView.setText(usernameoremail);
-
-        isAdmin = userDao.isAdmin(usernameoremail);
-
+        int userId = sharedPreferences.getInt("userId", -1);
+        isAdmin = userDao.isAdmin(userId);
         if (isAdmin) {
             textViewAdminOption1.setVisibility(View.VISIBLE);
             textViewAdminOption2.setVisibility(View.VISIBLE);

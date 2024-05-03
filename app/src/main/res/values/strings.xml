@@ -59,4 +59,5 @@
     <string name="enter_weight_in_kg">Enter weight in kg</string>
     <string name="enter_weight_in_lbs">Enter weight in lbs</string>
     <string name="convert">Convert</string>
+    <string name="welcome_machin">Welcome Machin</string>
 </resources>
