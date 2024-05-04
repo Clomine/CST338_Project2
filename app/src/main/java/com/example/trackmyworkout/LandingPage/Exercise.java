@@ -5,11 +5,13 @@ public class Exercise {
     private double weight;
 
     private int exId;
+    private boolean isSelected;
 
     public Exercise(String name, double weight, int exId) {
         this.name = name;
         this.weight = Math.round(weight * 100.0) / 100.0;
         this.exId = exId;
+        this.isSelected = false;
     }
 
     public String getName() {
@@ -30,5 +32,13 @@ public class Exercise {
 
     public int getExId() {
         return exId;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 }

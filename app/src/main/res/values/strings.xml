@@ -60,4 +60,6 @@
     <string name="enter_weight_in_lbs">Enter weight in lbs</string>
     <string name="convert">Convert</string>
     <string name="welcome_machin">Welcome Machin</string>
+    <string name="your_today_s_workout">Your today\'s workout</string>
+    <string name="choose_exercises_to_get_started">Choose exercises to get started.</string>
 </resources>
