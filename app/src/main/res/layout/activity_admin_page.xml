@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:outlineSpotShadowColor="#000000"
-    tools:context=".LandingPage.LandingPage">
+    tools:context=".AdminPage">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -36,7 +36,7 @@
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSubTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewMainTitle" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddWorkout"
@@ -54,37 +54,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="@string/trackmyworkout"
+        android:text="@string/admin_page"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textViewSubTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/welcome_machin"
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/textViewMainTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="visible"/>
-
-    <TextView
-        android:id="@+id/textViewSubTitleAdmin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/welcome_machin"
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/textViewMainTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="invisible"
-        android:textColor="@color/red"
-        android:onClick="onAdminClick"
-        android:clickable="true" />
 
     <TextView
         android:id="@+id/textViewExerciseHeader"
@@ -93,12 +68,12 @@
         android:layout_marginHorizontal="50dp"
         android:layout_marginTop="8dp"
         android:gravity="center_vertical|start"
-        android:text="@string/exercises"
+        android:text="@string/name"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@id/textViewWeightHeader"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewSubTitle" />
+        app:layout_constraintTop_toBottomOf="@id/textViewMainTitle" />
 
     <TextView
         android:id="@+id/textViewWeightHeader"
@@ -107,12 +82,12 @@
         android:layout_marginHorizontal="50dp"
         android:layout_marginTop="8dp"
         android:gravity="center_vertical|start"
-        android:text="@string/weight"
+        android:text="@string/is_admin"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/textViewExerciseHeader"
-        app:layout_constraintTop_toBottomOf="@id/textViewSubTitle" />
+        app:layout_constraintTop_toBottomOf="@id/textViewMainTitle" />
 
     <FrameLayout
         android:id="@+id/content_frame"

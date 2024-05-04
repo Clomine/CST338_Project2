@@ -60,4 +60,16 @@
     <string name="enter_weight_in_lbs">Enter weight in lbs</string>
     <string name="convert">Convert</string>
     <string name="welcome_machin">Welcome Machin</string>
+    <string name="admin_page">Admin Page</string>
+    <string name="name">Name</string>
+    <string name="is_admin">Is Admin</string>
+    <string name="delete_account">Delete account</string>
+    <string name="reset_workout">Reset Workout</string>
+    <string name="logout">Logout</string>
+    <string name="lbs_or_kg">LBS or Kg</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="validate">Validate</string>
+    <string name="cancel">Cancel</string>
 </resources>

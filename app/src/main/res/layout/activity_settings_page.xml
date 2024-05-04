@@ -43,7 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:textSize="16sp"
-                android:text="LBS or Kg"
+                android:text="@string/lbs_or_kg"
                 android:clickable="true"
                 android:focusable="true"
                 android:visibility="gone"
@@ -54,7 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:textSize="16sp"
-                android:text="Reset Workout"
+                android:text="@string/reset_workout"
                 android:clickable="true"
                 android:focusable="true"
                 android:onClick="onOptionClick" />
@@ -64,7 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:textSize="16sp"
-                android:text="Logout"
+                android:text="@string/logout"
                 android:clickable="true"
                 android:focusable="true"
                 android:onClick="onOptionClick" />
@@ -74,36 +74,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:textSize="16sp"
-                android:text="Delete account"
+                android:text="@string/delete_account"
                 android:clickable="true"
                 android:focusable="true"
                 android:onClick="onOptionClick" />
-
-            <TextView
-                android:id="@+id/textViewAdminOption1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="@color/red"
-                android:layout_marginTop="24dp"
-                android:text="You are an Admin:"
-                android:visibility="gone"
-                android:clickable="false"
-                android:focusable="false"
-                android:onClick="onOptionClick" />
-
-            <TextView
-                android:id="@+id/textViewAdminOption2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="@color/red"
-                android:text="      Manage users"
-                android:visibility="gone"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="onOptionClick" />
-
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

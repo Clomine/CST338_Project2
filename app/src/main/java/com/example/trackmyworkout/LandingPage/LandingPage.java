@@ -15,10 +15,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.trackmyworkout.AdminPage;
 import com.example.trackmyworkout.ConversionPage;
 import com.example.trackmyworkout.DB.Database;
 import com.example.trackmyworkout.DB.ExerciseDao;
-import com.example.trackmyworkout.DB.ExerciseTable;
 import com.example.trackmyworkout.DB.UserByExerciseDAO;
 import com.example.trackmyworkout.DB.UserDao;
 import com.example.trackmyworkout.DB.WeightDAO;
@@ -95,13 +95,19 @@ public class LandingPage extends AppCompatActivity {
 
         // Subtitle part
         TextView textViewSubTitle = findViewById(R.id.textViewSubTitle);
+        TextView textViewSubTitleAdmin = findViewById(R.id.textViewSubTitleAdmin);
         String newSubtitle;
         if (!userDao.isAdmin(userId)) {
             newSubtitle = "Welcome " + userDao.getName(userId) + " !";
+            textViewSubTitle.setVisibility(View.VISIBLE);
+            textViewSubTitleAdmin.setVisibility(View.INVISIBLE);
         } else {
             newSubtitle = "Welcome " + userDao.getName(userId) + ", you are an Admin !";
+            textViewSubTitleAdmin.setVisibility(View.VISIBLE);
+            textViewSubTitle.setVisibility(View.INVISIBLE);
         }
         textViewSubTitle.setText(newSubtitle);
+        textViewSubTitleAdmin.setText(newSubtitle);
 
         // The following part is for the Exercise RecyclerView
         RecyclerView recyclerView = findViewById(R.id.recyclerViewWorkouts);
@@ -232,5 +238,10 @@ public class LandingPage extends AppCompatActivity {
             adapter.addExercise(new Exercise(name, weight, exerciseId));
             dialog.dismiss();
         });
+    }
+
+    public void onAdminClick(View view) {
+        Intent intent = new Intent(this, AdminPage.class);
+        startActivity(intent);
     }
 }

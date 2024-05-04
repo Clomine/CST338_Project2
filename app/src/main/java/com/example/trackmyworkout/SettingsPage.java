@@ -65,16 +65,9 @@ public class SettingsPage extends AppCompatActivity {
         TextView textViewOption2 = findViewById(R.id.textViewOption2);
         TextView textViewOption3 = findViewById(R.id.textViewOption3);
         TextView textViewOption4 = findViewById(R.id.textViewOption4);
-        TextView textViewAdminOption1 = findViewById(R.id.textViewAdminOption1);
-        TextView textViewAdminOption2 = findViewById(R.id.textViewAdminOption2);
 
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         int userId = sharedPreferences.getInt("userId", -1);
-        boolean isAdmin = userDao.isAdmin(userId);
-        if (isAdmin) {
-            textViewAdminOption1.setVisibility(View.VISIBLE);
-            textViewAdminOption2.setVisibility(View.VISIBLE);
-        }
 
         textViewOption1.setOnClickListener(new View.OnClickListener() {
             // LBS or Kg (GONE FOR NOW) !!!
@@ -145,13 +138,6 @@ public class SettingsPage extends AppCompatActivity {
                         }
                     }
                 });
-            }
-        });
-        textViewAdminOption2.setOnClickListener(new View.OnClickListener() {
-            // If admin manage account
-            @Override
-            public void onClick(View view) {
-
             }
         });
     }

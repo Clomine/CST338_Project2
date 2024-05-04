@@ -4,6 +4,8 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
+import java.util.List;
+
 @Dao
 public interface UserDao {
     @Insert
@@ -29,4 +31,7 @@ public interface UserDao {
 
     @Query("DELETE FROM UserTable WHERE userId = :userId")
     void deleteAccount(int userId);
+
+    @Query("SELECT userId FROM UserTable")
+    List<Integer> selectAllId();
 }
