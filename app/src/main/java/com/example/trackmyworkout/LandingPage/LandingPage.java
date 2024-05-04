@@ -120,9 +120,8 @@ public class LandingPage extends AppCompatActivity {
             showEditDeleteDialog(position);
             return true;
         });
-        // The above part is for the Exercise RecyclerView
-
         recyclerView.setAdapter(adapter);
+        // The above part is for the Exercise RecyclerView
 
         // Dialog part for adding element when clicking on the add button
         FloatingActionButton fabAddWorkout = findViewById(R.id.fabAddWorkout);

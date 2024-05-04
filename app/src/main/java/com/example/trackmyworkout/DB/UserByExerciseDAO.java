@@ -18,4 +18,6 @@ public interface UserByExerciseDAO {
     @Query("DELETE FROM UserByExerciseTable WHERE exerciseId = :exerciseId")
     void deleteUserByExercise(int exerciseId);
 
+    @Query("DELETE FROM UserByExerciseTable WHERE userId = :userId")
+    void deleteAllExerciseByUserId(int userId);
 }
