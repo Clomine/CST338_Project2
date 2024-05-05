@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -91,7 +92,7 @@ public class AdminPage extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // User list initialisation using DB
-        ArrayList<Exercise> exercises = new ArrayList<>();
+        ArrayList<Exercise> users = new ArrayList<>();
         List<Integer> iDlist = userDao.selectAllId();
 
         for (Integer id : iDlist) {
@@ -99,12 +100,30 @@ public class AdminPage extends AppCompatActivity {
             if (userDao.isAdmin(id)) {
                 admin = 1.0;
             }
-            exercises.add(new Exercise(userDao.getName(id), admin, id));
+            users.add(new Exercise(userDao.getName(id), admin, id));
         }
 
-        adapter = new ExerciseAdapter(exercises);
+        adapter = new ExerciseAdapter(users);
         adapter.setOnItemLongClickListener(position -> {
-            // EDITING USER
+            // Dialog for user delete
+            new AlertDialog.Builder(this).setTitle("Confirm User Delete")
+                    .setMessage("Are you sure you want to delete this user ?")
+                    .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            userByExerciseDAO.deleteAllExerciseByUserId(users.get(position).getExId());
+                            userDao.deleteAccount(users.get(position).getExId());
+                            adapter.removeExercise(position);
+                            adapter.notifyDataSetChanged();
+                            dialog.dismiss();
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    }).show();
             return true;
         });
         recyclerView.setAdapter(adapter);
