@@ -9,6 +9,7 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
+        android:fontFamily="@font/nunito"
         style="@style/BottomNavigationViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,6 +28,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewWorkouts"
+        android:fontFamily="@font/nunito"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="16dp"
@@ -51,6 +53,7 @@
 
     <TextView
         android:id="@+id/textViewMainTitle"
+        android:fontFamily="@font/nunito_black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -63,6 +66,7 @@
 
     <TextView
         android:id="@+id/textViewSubTitle"
+        android:fontFamily="@font/nunito_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/welcome_machin"
@@ -74,6 +78,7 @@
 
     <TextView
         android:id="@+id/textViewSubTitleAdmin"
+        android:fontFamily="@font/nunito_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/welcome_machin"
@@ -82,12 +87,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:visibility="invisible"
-        android:textColor="@color/red"
+        android:textColor="#5A0404"
         android:onClick="onAdminClick"
         android:clickable="true" />
 
     <TextView
         android:id="@+id/textViewExerciseHeader"
+        android:fontFamily="@font/nunito_extrabold"
         android:layout_width="0dp"
         android:layout_height="58dp"
         android:layout_marginHorizontal="50dp"
@@ -102,6 +108,7 @@
 
     <TextView
         android:id="@+id/textViewWeightHeader"
+        android:fontFamily="@font/nunito_extrabold"
         android:layout_width="wrap_content"
         android:layout_height="58dp"
         android:layout_marginHorizontal="50dp"

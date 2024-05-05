@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="312dp"
-        android:fontFamily="@font/nunito_bold"
+        android:fontFamily="@font/nunito_extrabold"
         android:gravity="center"
         android:text="@string/welcome"
         android:textColor="#414142"
@@ -35,6 +35,7 @@
 
     <Button
         android:id="@+id/signIn"
+        android:fontFamily="@font/nunito_bold"
         android:layout_width="240dp"
         android:layout_height="65dp"
         android:layout_marginTop="45dp"
@@ -48,6 +49,7 @@
 
     <Button
         android:id="@+id/signUp"
+        android:fontFamily="@font/nunito_bold"
         android:layout_width="240dp"
         android:layout_height="65dp"
         android:layout_marginTop="5dp"
@@ -62,10 +64,11 @@
 
     <TextView
         android:id="@+id/alreadyAccount"
+        android:fontFamily="@font/nunito_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
-        android:text="Already have an account ?"
+        android:text="@string/already_have_an_account"
         android:textColor="#414142"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

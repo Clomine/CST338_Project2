@@ -7,6 +7,7 @@
 
     <EditText
         android:id="@+id/username"
+        android:fontFamily="@font/nunito"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/username"
@@ -14,6 +15,7 @@
 
     <EditText
         android:id="@+id/email"
+        android:fontFamily="@font/nunito"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/email"
@@ -21,6 +23,7 @@
 
     <EditText
         android:id="@+id/password"
+        android:fontFamily="@font/nunito"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/password"
@@ -28,6 +31,7 @@
 
     <CheckBox
         android:id="@+id/isAdmin"
+        android:fontFamily="@font/nunito"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/is_admin" />
@@ -40,6 +44,7 @@
 
         <Button
             android:id="@+id/btn_cancel"
+            android:fontFamily="@font/nunito_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -48,6 +53,7 @@
 
         <Button
             android:id="@+id/btn_validate"
+            android:fontFamily="@font/nunito_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

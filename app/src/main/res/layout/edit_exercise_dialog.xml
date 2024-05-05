@@ -7,12 +7,14 @@
 
     <EditText
         android:id="@+id/editTextExerciseName"
+        android:fontFamily="@font/nunito"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter exercise name"/>
 
     <EditText
         android:id="@+id/editTextExerciseWeight"
+        android:fontFamily="@font/nunito"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"

@@ -8,6 +8,7 @@
 
     <TextView
         android:id="@+id/tvExerciseName"
+        android:fontFamily="@font/nunito_black"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -21,6 +22,7 @@
 
     <TextView
         android:id="@+id/tvSubtitle"
+        android:fontFamily="@font/nunito_bold"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/weight_progress_by_date"
@@ -32,6 +34,7 @@
 
     <com.jjoe64.graphview.GraphView
         android:id="@+id/graph"
+        android:fontFamily="@font/nunito"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
@@ -46,6 +49,7 @@
 
     <Button
         android:id="@+id/btnUpdate"
+        android:fontFamily="@font/nunito_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/update"
@@ -57,6 +61,7 @@
 
     <Button
         android:id="@+id/btnDelete"
+        android:fontFamily="@font/nunito_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/delete"
@@ -85,6 +90,7 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
+        android:fontFamily="@font/nunito"
         style="@style/BottomNavigationViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

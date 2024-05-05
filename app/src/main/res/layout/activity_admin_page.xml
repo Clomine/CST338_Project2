@@ -10,6 +10,7 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         style="@style/BottomNavigationViewStyle"
+        android:fontFamily="@font/nunito"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
@@ -27,6 +28,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewWorkouts"
+        android:fontFamily="@font/nunito"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="16dp"
@@ -51,9 +53,11 @@
 
     <TextView
         android:id="@+id/textViewMainTitle"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:fontFamily="@font/nunito_black"
         android:text="@string/admin_page"
         android:textSize="28sp"
         android:textStyle="bold"
@@ -63,6 +67,7 @@
 
     <TextView
         android:id="@+id/textViewExerciseHeader"
+        android:fontFamily="@font/nunito_extrabold"
         android:layout_width="0dp"
         android:layout_height="58dp"
         android:layout_marginHorizontal="50dp"
@@ -77,6 +82,7 @@
 
     <TextView
         android:id="@+id/textViewWeightHeader"
+        android:fontFamily="@font/nunito_extrabold"
         android:layout_width="wrap_content"
         android:layout_height="58dp"
         android:layout_marginHorizontal="50dp"
