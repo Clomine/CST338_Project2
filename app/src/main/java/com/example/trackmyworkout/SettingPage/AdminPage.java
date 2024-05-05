@@ -1,4 +1,4 @@
-package com.example.trackmyworkout;
+package com.example.trackmyworkout.SettingPage;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -17,7 +17,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.example.trackmyworkout.ConversionPage;
 import com.example.trackmyworkout.DB.UserTable;
 import com.example.trackmyworkout.LandingPage.ExerciseAdapter;
 import com.example.trackmyworkout.LandingPage.Exercise;
@@ -25,6 +27,8 @@ import com.example.trackmyworkout.DB.Database;
 import com.example.trackmyworkout.DB.UserByExerciseDAO;
 import com.example.trackmyworkout.DB.UserDao;
 import com.example.trackmyworkout.LandingPage.LandingPage;
+import com.example.trackmyworkout.R;
+import com.example.trackmyworkout.WorkoutPage;
 import com.example.trackmyworkout.databinding.ActivityAdminPageBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -111,11 +115,16 @@ public class AdminPage extends AppCompatActivity {
                     .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            userByExerciseDAO.deleteAllExerciseByUserId(users.get(position).getExId());
-                            userDao.deleteAccount(users.get(position).getExId());
-                            adapter.removeExercise(position);
-                            adapter.notifyDataSetChanged();
-                            dialog.dismiss();
+                            if (userId == users.get(position).getExId()) {
+                                Toast.makeText(AdminPage.this, "You can't delete yourself via the admin page.", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                            } else {
+                                userByExerciseDAO.deleteAllExerciseByUserId(users.get(position).getExId());
+                                userDao.deleteAccount(users.get(position).getExId());
+                                adapter.removeExercise(position);
+                                adapter.notifyDataSetChanged();
+                                dialog.dismiss();
+                            }
                         }
                     })
                     .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

@@ -14,6 +14,7 @@ import java.util.List;
 public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.WorkoutViewHolder> {
     private List<Exercise> exercises;
     private OnItemLongClickListener longClickListener;
+    private OnWeightClickListener weightClickListener;
 
     public List<Exercise> getExercises() {
         return exercises;
@@ -27,6 +28,14 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Workou
         this.longClickListener = listener;
     }
 
+    public interface OnWeightClickListener {
+        void onWeightClick(Exercise exercise);
+    }
+
+    public void setOnWeightClickListener(OnWeightClickListener listener) {
+        this.weightClickListener = listener;
+    }
+
     public ExerciseAdapter(List<Exercise> workouts) {
         this.exercises = workouts;
     }
@@ -35,7 +44,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Workou
     @Override
     public WorkoutViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.exercise_item, parent, false);
-        return new WorkoutViewHolder(view);
+        return new WorkoutViewHolder(view, weightClickListener);
     }
 
     @Override
@@ -43,6 +52,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Workou
         Exercise workout = exercises.get(position);
         holder.workoutName.setText(workout.getName());
         holder.workoutWeight.setText(String.valueOf(workout.getWeight()));
+        holder.workoutWeight.setTag(workout); // Set the exercise as a tag
 
         // Set long click listener for context menu
         holder.itemView.setOnLongClickListener(v -> {
@@ -60,10 +70,19 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Workou
         TextView workoutName;
         TextView workoutWeight;
 
-        public WorkoutViewHolder(View itemView) {
+        public WorkoutViewHolder(View itemView, final OnWeightClickListener weightClickListener) {
             super(itemView);
             workoutName = itemView.findViewById(R.id.textViewExerciseName);
             workoutWeight = itemView.findViewById(R.id.textViewExerciseWeight);
+
+            workoutWeight.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (weightClickListener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
+                        weightClickListener.onWeightClick((Exercise) workoutWeight.getTag());
+                    }
+                }
+            });
         }
     }
 

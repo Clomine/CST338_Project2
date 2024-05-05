@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.trackmyworkout.AdminPage;
+import com.example.trackmyworkout.SettingPage.AdminPage;
 import com.example.trackmyworkout.ConversionPage;
 import com.example.trackmyworkout.DB.Database;
 import com.example.trackmyworkout.DB.ExerciseDao;
@@ -24,7 +24,8 @@ import com.example.trackmyworkout.DB.UserDao;
 import com.example.trackmyworkout.DB.WeightDAO;
 import com.example.trackmyworkout.DB.WeightTable;
 import com.example.trackmyworkout.R;
-import com.example.trackmyworkout.SettingsPage;
+import com.example.trackmyworkout.SettingPage.SettingsPage;
+import com.example.trackmyworkout.WeightProgress;
 import com.example.trackmyworkout.WorkoutPage;
 import com.example.trackmyworkout.databinding.ActivityLandingPageBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -62,8 +63,6 @@ public class LandingPage extends AppCompatActivity {
         exerciseDao = db.EXDao();
         userByExerciseDAO = db.UBEDao();
         weightDAO = db.WDao();
-
-
 
         // The following part is for the Bottom Navigation Bar
         ActivityLandingPageBinding binding = ActivityLandingPageBinding.inflate(getLayoutInflater());
@@ -122,9 +121,18 @@ public class LandingPage extends AppCompatActivity {
         }
 
         adapter = new ExerciseAdapter(exercises);
+        // Edit/Delete exercise
         adapter.setOnItemLongClickListener(position -> {
             showEditDeleteDialog(position);
             return true;
+        });
+
+        // Show progression graph
+        adapter.setOnWeightClickListener(exercise -> {
+            Intent intent = new Intent(this, WeightProgress.class);
+            intent.putExtra("exerciseId", exercise.getExId());
+            startActivity(intent);
+            //Toast.makeText(LandingPage.this, "Weight clicked for " + exercise.getName(), Toast.LENGTH_SHORT).show();
         });
         recyclerView.setAdapter(adapter);
         // The above part is for the Exercise RecyclerView

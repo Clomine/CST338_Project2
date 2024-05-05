@@ -13,10 +13,13 @@
         android:theme="@style/Theme.TrackMyWorkout"
         tools:targetApi="31">
         <activity
-            android:name=".AdminPage"
+            android:name=".WeightProgress"
             android:exported="false" />
         <activity
-            android:name=".SettingsPage"
+            android:name=".SettingPage.AdminPage"
+            android:exported="false" />
+        <activity
+            android:name=".SettingPage.SettingsPage"
             android:exported="false" />
         <activity
             android:name=".ConversionPage"

@@ -4,9 +4,6 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-import com.example.trackmyworkout.DB.Database;
-import com.example.trackmyworkout.DB.ExerciseTable;
-
 import java.util.Date;
 
 @Entity(tableName = Database.WEIGHT_TABLE,

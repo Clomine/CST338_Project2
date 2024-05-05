@@ -72,4 +72,9 @@
     <string name="password">Password</string>
     <string name="validate">Validate</string>
     <string name="cancel">Cancel</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="weight_progress">Weight Progress</string>
+    <string name="exercise_name">Exercise Name</string>
+    <string name="weight_progress_by_date">Weight Progress by Date</string>
 </resources>

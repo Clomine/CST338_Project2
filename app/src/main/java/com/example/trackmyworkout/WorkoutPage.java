@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.trackmyworkout.LandingPage.LandingPage;
+import com.example.trackmyworkout.SettingPage.SettingsPage;
 import com.example.trackmyworkout.databinding.ActivityWorkoutPageBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

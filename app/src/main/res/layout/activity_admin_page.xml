@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:outlineSpotShadowColor="#000000"
-    tools:context=".AdminPage">
+    tools:context=".SettingPage.AdminPage">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

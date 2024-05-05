@@ -1,4 +1,4 @@
-package com.example.trackmyworkout;
+package com.example.trackmyworkout.SettingPage;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -13,10 +13,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.trackmyworkout.ConversionPage;
 import com.example.trackmyworkout.DB.UserByExerciseDAO;
 import com.example.trackmyworkout.LandingPage.LandingPage;
 import com.example.trackmyworkout.DB.Database;
 import com.example.trackmyworkout.DB.UserDao;
+import com.example.trackmyworkout.MainActivity;
+import com.example.trackmyworkout.R;
+import com.example.trackmyworkout.WorkoutPage;
 import com.example.trackmyworkout.databinding.ActivitySettingsPageBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
