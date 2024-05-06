@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.trackmyworkout.LandingPage.LandingPage;
 import com.example.trackmyworkout.DB.Database;
 import com.example.trackmyworkout.DB.UserDao;
+import com.example.trackmyworkout.WorkoutPage.WorkoutPage;
 import com.example.trackmyworkout.databinding.ActivitySettingsPageBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

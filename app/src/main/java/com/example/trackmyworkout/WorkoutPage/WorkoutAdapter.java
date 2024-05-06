@@ -1,8 +1,9 @@
-package com.example.trackmyworkout;
+package com.example.trackmyworkout.WorkoutPage;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
@@ -19,7 +20,7 @@ import java.util.List;
 public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutViewHolder> {
 
     private List<Exercise> exercises;
-    private List<Integer> checkedExercises; // List to store IDs of checked exercises
+    List<Integer> checkedExercises; // List to store IDs of checked exercises
 
     public WorkoutAdapter(List<Exercise> exercises) {
         this.exercises = exercises;
@@ -53,6 +54,7 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
         private TextView nameTextView;
         private CheckBox checkBox;
         private TextView textViewIndex;
+
 
         public WorkoutViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -102,6 +104,7 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
                         // If the checkbox is unchecked, remove the exercise ID from the checkedExercises list
                         checkedExercises.remove(Integer.valueOf(exerciseId));
                     }
+
                     // Update the index text for all exercises after a checkbox state change
                     notifyDataSetChanged(); // Notify adapter to refresh all items
                 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WorkoutPage">
+    tools:context=".WorkoutPage.WorkoutPage">
 
     <TextView
         android:id="@+id/workoutTextView"
@@ -44,11 +44,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chooseExTextView" />
 
-    <Button
-        android:id="@+id/StartWorkout"
+    <TextView
+        android:id="@+id/workoutInfoTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="25dp"
+
+        android:fontFamily="@font/nunito_sans_extralight"
+        android:text="Choose your exercises in order."
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/StartWorkoutButton" />
+
+    <Button
+        android:id="@+id/StartWorkoutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="45dp"
         android:text="Start Workout"
         android:backgroundTint="#FF6200EE"
         android:textColor="#FFFFFF"
