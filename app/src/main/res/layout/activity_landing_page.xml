@@ -87,7 +87,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:visibility="invisible"
-        android:textColor="#5A0404"
         android:onClick="onAdminClick"
         android:clickable="true" />
 
