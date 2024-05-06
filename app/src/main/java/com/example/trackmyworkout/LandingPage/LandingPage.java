@@ -19,6 +19,7 @@ import com.example.trackmyworkout.SettingPage.AdminPage;
 import com.example.trackmyworkout.ConversionPage;
 import com.example.trackmyworkout.DB.Database;
 import com.example.trackmyworkout.DB.ExerciseDao;
+import com.example.trackmyworkout.DB.ExerciseTable;
 import com.example.trackmyworkout.DB.UserByExerciseDAO;
 import com.example.trackmyworkout.DB.UserDao;
 import com.example.trackmyworkout.DB.WeightDAO;
@@ -26,7 +27,7 @@ import com.example.trackmyworkout.DB.WeightTable;
 import com.example.trackmyworkout.R;
 import com.example.trackmyworkout.SettingPage.SettingsPage;
 import com.example.trackmyworkout.WeightProgress;
-import com.example.trackmyworkout.WorkoutPage;
+import com.example.trackmyworkout.WorkoutPage.WorkoutPage;
 import com.example.trackmyworkout.databinding.ActivityLandingPageBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -63,6 +64,8 @@ public class LandingPage extends AppCompatActivity {
         exerciseDao = db.EXDao();
         userByExerciseDAO = db.UBEDao();
         weightDAO = db.WDao();
+
+
 
         // The following part is for the Bottom Navigation Bar
         ActivityLandingPageBinding binding = ActivityLandingPageBinding.inflate(getLayoutInflater());
@@ -126,6 +129,7 @@ public class LandingPage extends AppCompatActivity {
             showEditDeleteDialog(position);
             return true;
         });
+        // The above part is for the Exercise RecyclerView
 
         // Show progression graph
         adapter.setOnWeightClickListener(exercise -> {

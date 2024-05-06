@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.trackmyworkout.LandingPage.LandingPage;
 import com.example.trackmyworkout.SettingPage.SettingsPage;
+import com.example.trackmyworkout.WorkoutPage.WorkoutPage;
 import com.example.trackmyworkout.databinding.ActivityConversionPageBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
