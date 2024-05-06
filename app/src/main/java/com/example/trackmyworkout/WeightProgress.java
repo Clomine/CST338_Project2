@@ -25,6 +25,7 @@ import com.example.trackmyworkout.DB.WeightData;
 import com.example.trackmyworkout.DB.WeightTable;
 import com.example.trackmyworkout.LandingPage.LandingPage;
 import com.example.trackmyworkout.SettingPage.SettingsPage;
+import com.example.trackmyworkout.WorkoutPage.WorkoutPage;
 import com.example.trackmyworkout.databinding.ActivityWeightProgressBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.jjoe64.graphview.GraphView;

@@ -20,7 +20,7 @@ import com.example.trackmyworkout.DB.Database;
 import com.example.trackmyworkout.DB.UserDao;
 import com.example.trackmyworkout.MainActivity;
 import com.example.trackmyworkout.R;
-import com.example.trackmyworkout.WorkoutPage;
+import com.example.trackmyworkout.WorkoutPage.WorkoutPage;
 import com.example.trackmyworkout.databinding.ActivitySettingsPageBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

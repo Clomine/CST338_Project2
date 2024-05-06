@@ -28,7 +28,7 @@ import com.example.trackmyworkout.DB.UserByExerciseDAO;
 import com.example.trackmyworkout.DB.UserDao;
 import com.example.trackmyworkout.LandingPage.LandingPage;
 import com.example.trackmyworkout.R;
-import com.example.trackmyworkout.WorkoutPage;
+import com.example.trackmyworkout.WorkoutPage.WorkoutPage;
 import com.example.trackmyworkout.databinding.ActivityAdminPageBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
