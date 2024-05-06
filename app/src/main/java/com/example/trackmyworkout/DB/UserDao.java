@@ -29,6 +29,9 @@ public interface UserDao {
     @Query("SELECT username FROM UserTable where userId = :userId")
     String getName(int userId);
 
+    @Query("UPDATE usertable SET username = :username WHERE userId = :userId")
+    void changeUsername(int userId, String username);
+
     @Query("DELETE FROM UserTable WHERE userId = :userId")
     void deleteAccount(int userId);
 

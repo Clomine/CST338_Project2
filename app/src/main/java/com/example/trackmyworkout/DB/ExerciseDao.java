@@ -14,7 +14,7 @@ public interface ExerciseDao {
     String nameById(int exerciseID);
 
     @Query("DELETE FROM ExerciseTable WHERE exerciseID = :exerciseID")
-    int deleteExercise(int exerciseID);
+    void deleteExercise(int exerciseID);
 
     @Query("UPDATE ExerciseTable SET name = :name WHERE exerciseId = :exerciseId")
     void updateExerciseName(int exerciseId, String name);
